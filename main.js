@@ -37,7 +37,7 @@ const createNewButton = text => {
 
     newButton.addEventListener('click', () => {
         createNewButton(text);
-        buttons = document.querySelectorAll('button');
+
 
     });
     newButton.addEventListener('mouseover', function ()  {
@@ -49,6 +49,7 @@ const createNewButton = text => {
 
     const container = document.querySelector('.field');
     container.appendChild(newButton);
+    buttons = document.querySelectorAll('button');
 };
 
 button.addEventListener('click', () => createNewButton('Me too!!'));
