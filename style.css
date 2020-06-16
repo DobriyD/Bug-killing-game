@@ -1,6 +1,5 @@
 body {
-    width: 100vw;
-    height: 100vh;
+    height: 90vh;
     padding: 0;
     margin: 0;
 }
@@ -15,9 +14,30 @@ body {
 button {
     padding: 10px 20px;
     position: absolute;
+    border: none;
+    border-radius: 30%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s ease;
+    background: url("foto/bug.svg");
+    background-size: contain;
+    cursor: pointer;
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+}
+
+input {
+    padding: 10px 20px;
+    position: absolute;
     width: 120px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     transition: all 0.2s ease;
+}
+
+p {
+    text-align: center;
 }

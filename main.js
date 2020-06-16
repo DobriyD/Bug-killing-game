@@ -34,6 +34,7 @@ const createNewButton = text => {
     const newButton = document.createElement('button');
     newButton.innerHTML = text;
     newButton.type = 'button';
+    newButton.onclick = onClick();
 
     newButton.addEventListener('click', () => {
         createNewButton(text);
@@ -52,6 +53,22 @@ const createNewButton = text => {
     buttons = document.querySelectorAll('button');
 };
 
-button.addEventListener('click', () => createNewButton('Me too!!'));
+button.addEventListener('click', () => createNewButton(''));
 
+//add score count
+let clicks = 0;
+let bestScore;
+function onClick() {
+    clicks += 1;
+    document.getElementById('clicks').innerHTML = clicks;
+    localStorage.setItem('clicks', clicks);
+}
+
+//saving score to local storage
+// by now it's last score
+if (localStorage.getItem('clicks')) {
+    bestScore = JSON.parse(localStorage.getItem('clicks'));
+    document.getElementById('bestScore').innerHTML = bestScore;
+
+}
 
