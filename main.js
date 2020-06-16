@@ -1,7 +1,7 @@
-const buttons = document.querySelectorAll('button');
-const button = document.querySelector('button');
-const field = document.querySelector('.field');
-const colors = ['red', 'green', 'blue', 'yellow', 'cyan'];
+let buttons = document.querySelectorAll('button');
+const button = document.querySelector('button'),
+    field = document.querySelector('.field'),
+    colors = ['red', 'green', 'blue', 'yellow', 'cyan'];
 
 // get random number
 const random = (min, max) => {
@@ -21,31 +21,36 @@ setInterval(() => {
     })
 }, 1000);
 
-// tried to set a delay to the first button to get opportunity for clicking it
-// button.addEventListener('mouseover', () => {
-//     let node = this;
-//     setTimeout(() => {
-//         this.style.top = `${random(10, 90)}%`;
-//         this.style.left = `${random(5, 95)}%`;
-//     }, 10000)
-// });
+// set a delay to the first button to get opportunity for clicking on it
+button.addEventListener('mouseover', () => {
+    setTimeout(() => {
+        button.style.top = `${random(10, 90)}%`;
+        button.style.left = `${random(5, 95)}%`;
+    }, 1000)
+});
 
 // creating a new buttons with all previous functions
 const createNewButton = text => {
     const newButton = document.createElement('button');
     newButton.innerHTML = text;
     newButton.type = 'button';
+
     newButton.addEventListener('click', () => {
-        createNewButton(text)
+        createNewButton(text);
+        buttons = document.querySelectorAll('button');
+
     });
-    newButton.addEventListener('mouseover', () => {
-        newButton.style.top = `${random(10, 90)}%`;
-        newButton.style.left = `${random(5, 95)}%`;
+    newButton.addEventListener('mouseover', function ()  {
+        setTimeout( () => {
+            this.style.top = `${random(10, 90)}%`;
+            this.style.left = `${random(5, 95)}%`;
+        }, 1000)
     });
 
     const container = document.querySelector('.field');
     container.appendChild(newButton);
-}
+};
 
-button.addEventListener('click', () => createNewButton('Catch me too!!'));
+button.addEventListener('click', () => createNewButton('Me too!!'));
+
 
