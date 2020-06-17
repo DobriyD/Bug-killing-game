@@ -1,7 +1,9 @@
 let buttons = document.querySelectorAll('button');
 const button = document.querySelector('button'),
-    field = document.querySelector('.field'),
-    colors = ['red', 'green', 'blue', 'yellow', 'cyan'];
+    button_none = document.querySelector('.button_none'),
+    field = document.querySelector('.field');
+let bestScore = 0;
+let clicks = 0;
 
 // get random number
 const random = (min, max) => {
@@ -9,9 +11,15 @@ const random = (min, max) => {
     return Math.floor(rand);
 };
 
+
 // get random color
 const getRandomColor = () => {
-    return colors[random(0, colors.length - 1)]
+    let letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 };
 
 // get random color to the button with delay
@@ -21,15 +29,33 @@ setInterval(() => {
     })
 }, 1000);
 
+
+//hide bugs when color of hidden button = color of a bug
+setTimeout(() => {
+    if (button_none.style.backgroundColor === button.style.backgroundColor) {
+        button.style.display = 'none';
+    }
+}, 1000);
+
+
+//set timeout between clicks
+button.addEventListener('click', () => {
+    button.setAttribute("disabled", "disabled");
+    setTimeout(() => {
+        button.removeAttribute("disabled");
+    }, 1000)
+})
+
+
 // set a delay to the first button to get opportunity for clicking on it
 button.addEventListener('mouseover', () => {
     setTimeout(() => {
-        button.style.top = `${random(10, 90)}%`;
-        button.style.left = `${random(5, 95)}%`;
-    }, 1000)
+        button.style.top = `${random(10, 80)}%`;
+        button.style.left = `${random(5, 85)}%`;
+    }, 400)
 });
 
-// creating a new buttons with all previous functions
+//creating a new buttons with all previous functions
 const createNewButton = text => {
     const newButton = document.createElement('button');
     newButton.innerHTML = text;
@@ -38,37 +64,42 @@ const createNewButton = text => {
 
     newButton.addEventListener('click', () => {
         createNewButton(text);
-
-
     });
     newButton.addEventListener('mouseover', function ()  {
         setTimeout( () => {
-            this.style.top = `${random(10, 90)}%`;
-            this.style.left = `${random(5, 95)}%`;
-        }, 1000)
+            this.style.top = `${random(10, 80)}%`;
+            this.style.left = `${random(5, 85)}%`;
+        }, 400)
     });
 
     const container = document.querySelector('.field');
     container.appendChild(newButton);
     buttons = document.querySelectorAll('button');
+
+    //change position after appearance
+    newButton.style.top = `${random(10, 80)}%`;
+    newButton.style.left = `${random(5, 85)}%`;
 };
 
 button.addEventListener('click', () => createNewButton(''));
 
+
 //add score count
-let clicks = 0;
-let bestScore;
+
 function onClick() {
     clicks += 1;
     document.getElementById('clicks').innerHTML = clicks;
     localStorage.setItem('clicks', clicks);
+    if (bestScore < clicks) {
+        localStorage.setItem('bestScore', clicks)
+    }
 }
 
-//saving score to local storage
-// by now it's last score
-if (localStorage.getItem('clicks')) {
-    bestScore = JSON.parse(localStorage.getItem('clicks'));
-    document.getElementById('bestScore').innerHTML = bestScore;
 
+//saving score to local storage
+
+if (localStorage.getItem('bestScore')) {
+    bestScore = JSON.parse(localStorage.getItem('bestScore'));
+    document.getElementById('bestScore').innerHTML = bestScore;
 }
 

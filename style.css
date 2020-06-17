@@ -2,13 +2,17 @@ body {
     height: 90vh;
     padding: 0;
     margin: 0;
+    background-color: #FF9D40;
 }
 
 .field {
     box-sizing: border-box;
     margin: 10px;
-    border: 1px solid blue;
-    height: calc(100% - 20px);
+    border: 10px solid #A64100;
+    height: calc(100% - 40px);
+    background: url("foto/desk.jpg");
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 5px;
 }
 
 button {
@@ -28,6 +32,10 @@ button {
     width: 60px;
 }
 
+button:focus {
+    outline: 0;
+}
+
 input {
     padding: 10px 20px;
     position: absolute;
@@ -40,4 +48,8 @@ input {
 
 p {
     text-align: center;
+}
+
+.button_none {
+    display: none;
 }
