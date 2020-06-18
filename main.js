@@ -57,37 +57,50 @@ button.addEventListener('mouseover', () => {
 
 //creating a new buttons with all previous functions
 const createNewButton = text => {
-    const newButton = document.createElement('button');
-    newButton.innerHTML = text;
-    newButton.type = 'button';
-    newButton.onclick = onClick();
+    for (let i = 0; i < 2; i++) {
+        const newButton = document.createElement('button')
+        newButton.innerHTML = text;
+        newButton.type = 'button';
+        newButton.onclick = onClick();
 
-    newButton.addEventListener('click', () => {
-        createNewButton(text);
-    });
-    newButton.addEventListener('mouseover', function ()  {
-        setTimeout( () => {
-            this.style.top = `${random(10, 80)}%`;
-            this.style.left = `${random(5, 85)}%`;
-        }, 400)
-    });
+        newButton.addEventListener('click', () => {
+            createNewButton(text);
+            newButton.remove();
+        });
+        newButton.addEventListener('mouseover', function ()  {
+            setTimeout( () => {
+                this.style.top = `${random(10, 80)}%`;
+                this.style.left = `${random(5, 85)}%`;
+            }, 400)
+        });
 
-    const container = document.querySelector('.field');
-    container.appendChild(newButton);
-    buttons = document.querySelectorAll('button');
+        const container = document.querySelector('.field');
+        container.appendChild(newButton);
+        buttons = document.querySelectorAll('button');
 
-    //change position after appearance
-    newButton.style.top = `${random(10, 80)}%`;
-    newButton.style.left = `${random(5, 85)}%`;
+        //change position after appearance
+        newButton.style.top = `${random(10, 80)}%`;
+        newButton.style.left = `${random(5, 85)}%`;
+    }
+
 };
 
-button.addEventListener('click', () => createNewButton(''));
+// delete bug
+const deleteButton = () => {
+    button.remove();
+};
+
+// create 2 bugs and delete one, which was clicked
+button.addEventListener('click', () => {
+    createNewButton('');
+    deleteButton();
+});
 
 
 //add score count
 
 function onClick() {
-    clicks += 1;
+    clicks += 0.5;
     document.getElementById('clicks').innerHTML = clicks;
     localStorage.setItem('clicks', clicks);
     if (bestScore < clicks) {
