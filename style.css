@@ -5,14 +5,21 @@ body {
     background-color: #FF9D40;
 }
 
+.container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
 .field {
     box-sizing: border-box;
     margin: 10px;
     border: 10px solid #A64100;
-    height: calc(100% - 40px);
     background: url("foto/desk.jpg");
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     border-radius: 5px;
+    flex-grow: 1;
+    height: 97.5vh;
 }
 
 button {
@@ -20,7 +27,7 @@ button {
     position: absolute;
     border: none;
     border-radius: 30%;
-    left: 50%;
+    left: 55%;
     top: 50%;
     transform: translate(-50%, -50%);
     transition: all 0.2s ease;
@@ -34,6 +41,10 @@ button {
 
 button:focus {
     outline: 0;
+}
+
+a {
+    cursor: pointer;
 }
 
 input {
@@ -50,6 +61,31 @@ p {
     text-align: center;
 }
 
+.info {
+    flex-direction: column;
+    text-align: center;
+    vertical-align: middle;
+    margin: auto;
+    padding-left: 10px;
+}
+
 .button_none {
     display: none;
+}
+
+.button_start {
+    z-index: 2;
+    font-size: 20em;
+    position: absolute;
+    left: 35%;
+    right: 25%;
+    top: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#game_time {
+    font-weight: 800;
+
 }

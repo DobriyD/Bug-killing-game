@@ -6,19 +6,24 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <div class="field">
-        <button type="button"></button>
+    <div class="container">
+        <div class="field">
+            <button type="button"></button>
+        </div>
+        <div class="info">
+            <p>
+                Clicks: <a id="clicks">0</a><br>
+                Best score: <a id="bestScore"></a>
+            </p>
+            <p>To Reset your Game<br>
+                Press Ctrl + R
+            </p>
+            <div id="game_time"></div>
+            <button class="button_none"></button>
+        </div>
+        <a class="button_start" id="countdown">Start</a>
     </div>
-    <div>
-        <p>
-            Clicks: <a id="clicks">0</a><br>
-            Best score: <a id="bestScore"></a>
-        </p>
-        <p>
-            Press Ctrl + R to Reset your Game
-        </p>
-        <button class="button_none"></button>
-    </div>
+
 </body>
 <script src="main.js"></script>
 </html>
